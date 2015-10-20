@@ -11,4 +11,5 @@ gem 'activesupport'
 gem 'webmock'
 gem 'dotenv'
 gem 'pry'
-
+gem 'json'
+gem 'ahocorasick'
