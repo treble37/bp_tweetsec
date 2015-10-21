@@ -22,6 +22,7 @@ require 'pry'
 require 'active_support/all'
 require_relative '../lib/tweet_fetcher'
 require_relative '../lib/dictionary_lookup'
+require_relative '../lib/password_evaluator'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
