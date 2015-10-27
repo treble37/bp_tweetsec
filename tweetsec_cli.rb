@@ -41,7 +41,7 @@ if options[:mock_tweets]
     end
   end
 else
-  #@tweets = tweet_fetcher.timeline_mentions.map { |tweet| tweet.full_text }
+  @tweets = tweet_fetcher.timeline_mentions.map { |tweet| tweet.full_text }
 end
 
 @tweets.each do |tweet|

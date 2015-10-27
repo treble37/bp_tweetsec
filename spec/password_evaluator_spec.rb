@@ -11,9 +11,9 @@ RSpec.describe PasswordEvaluator do
     expect(@password_evaluator.replace_message(tweet_text)).to eq('z 1234!')
   end
 
-  it "should be limited when the actual words are not in the dictionary" do
+  it "should use available tokens (equates to individual letters) when the actual words are not in the dictionary" do
     tweet_text = "This message will be replaced 1234!"
-    expect(@password_evaluator.replace_message(tweet_text)).to eq('This z z z replaced 1234!')
+    expect(@password_evaluator.replace_message(tweet_text)).to eq('zz z z z zzz 1234!')
   end
 
   it "should prefer longer words when replacing English words in tweet text with a lowercase letter" do
@@ -46,9 +46,7 @@ RSpec.describe PasswordEvaluator do
 
   it "should treat combined words as English words that will be replaced with a lowercase letter" do
     tweet_text = "passwordnot sword 1234!"
-#    expect(@password_evaluator.replace_message(tweet_text)).to eq('z z 1234!')
-    pending 'tbd'
-    fail
+    expect(@password_evaluator.replace_message(tweet_text)).to eq('zz z 1234!')
   end 
 
 end

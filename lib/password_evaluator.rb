@@ -13,11 +13,9 @@ class PasswordEvaluator
   end
 
   def replace_message(message)
-    word_list = get_possible_words(message)
-    replacements = {}
-    word_list.each do |word|
-      replacements[word] = get_replacement(word)
-      message = message.gsub(/#{word}/, replacements[word])
+    replacements = get_replacements(message)
+    replacements.each do |word|
+      message = message.gsub(/#{word}/i, 'z')
     end
     message
   end
@@ -44,18 +42,9 @@ class PasswordEvaluator
 
   private
 
-  def get_replacement(word)
-    lookup_word = word.upcase
-    possible_replacements = @trie.lookup(lookup_word).sort_by { |token| -token.length }
-    replacement = possible_replacements.include?(lookup_word) ?  'z' : word
-  end
-
-  def get_possible_words(message)
-    message.split(/[\d\s]+/).select { |word| only_letters?(word) }.sort_by { |word| -word.length }
-  end
-
-  def only_letters?(word)
-    /^[a-zA-Z]+$/ =~ word
+  def get_replacements(phrase)
+    lookup_phrase = phrase.upcase
+    possible_replacements = @trie.lookup(lookup_phrase).sort_by { |token| -token.length }
   end
 
 end
